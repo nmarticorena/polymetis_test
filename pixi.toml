@@ -1,0 +1,16 @@
+[workspace]
+channels = ["conda-forge", "nmarticorena"]
+name = "polymetis_test"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[activation.env]
+GRIPPER_PORT="/dev/serial/by-id/usb-FTDI_USB_TO_RS-485_DABD0VCA-if00-port0"
+
+[tasks]
+panda_server = "launch_robot.py robot_client=franka_hardware use_real_time=false"
+gripper_server = "launch_gripper.py gripper=robotiq_2f gripper.comport=$GRIPPER_PORT"
+
+[dependencies]
+polymetis = ">=0.2,<0.3"
+python = ">=3.12.13,<3.13"
